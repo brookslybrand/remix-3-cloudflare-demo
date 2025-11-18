@@ -1,20 +1,43 @@
+import { createCookie } from '@remix-run/cookie'
 import { createRouter } from '@remix-run/fetch-router'
-import * as res from '@remix-run/fetch-router/response-helpers'
+import { formData } from '@remix-run/fetch-router/form-data-middleware'
+import { logger } from '@remix-run/fetch-router/logger-middleware'
+import { methodOverride } from '@remix-run/fetch-router/method-override-middleware'
+import { session } from '@remix-run/fetch-router/session-middleware'
+import { staticFiles } from '@remix-run/fetch-router/static-middleware'
+import { createCookieStorage } from '@remix-run/session/cookie-storage'
 
 import { routes } from './routes'
 
-export let router = createRouter()
+import * as marketingHandlers from './handlers/marketing'
+import * as authHandlers from './handlers/auth'
+import * as postsHandlers from './handlers/posts'
+import * as commentHandlers from './handlers/comment'
 
-let nav = `
-  <nav>
-    <a href="/">Home</a> |
-    <a href="/about">About</a> |
-    <a href="/contact">Contact</a>
-  </nav>
-`
+let cookie = createCookie('__sess', {
+  secrets: ['s3cr3t'],
+})
+let storage = createCookieStorage()
 
-router.map(routes, {
-  home: () => res.html(`<html><body>${nav}<h1>Hello World!</h1></body></html>`),
-  about: () => res.html(`<html><body>${nav}<h1>About Page</h1></body></html>`),
-  contact: () => res.html(`<html><body>${nav}<h1>Contact Page</h1></body></html>`),
+export let router = createRouter({
+  middleware: [
+    logger(),
+    formData(),
+    methodOverride(),
+    session(cookie, storage),
+    // staticFiles('./public', {
+    //   cacheControl: 'public, max-age=3600',
+    //   etag: 'strong',
+    // }),
+  ],
+})
+
+router.map(routes.home, marketingHandlers.home)
+
+router.map(routes.login, authHandlers.login)
+router.post(routes.logout, authHandlers.logout)
+
+router.map(routes.posts, {
+  ...postsHandlers.posts,
+  comment: commentHandlers.comment,
 })

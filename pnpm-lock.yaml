@@ -8,9 +8,21 @@ importers:
 
   .:
     dependencies:
+      '@remix-run/cookie':
+        specifier: ^0.4.0
+        version: 0.4.0
       '@remix-run/fetch-router':
         specifier: ^0.9.0
-        version: 0.9.0(@remix-run/cookie@0.4.0(@remix-run/headers@0.17.0))(@remix-run/form-data-parser@0.14.0)(@remix-run/headers@0.17.0)(@remix-run/html-template@0.3.0)(@remix-run/lazy-file@3.8.0)(@remix-run/route-pattern@0.15.0)(@remix-run/session@0.2.0)
+        version: 0.9.0(@remix-run/cookie@0.4.0)(@remix-run/form-data-parser@0.14.0)(@remix-run/html-template@0.3.0)(@remix-run/lazy-file@3.8.0)(@remix-run/route-pattern@0.15.0)(@remix-run/session@0.2.0)
+      '@remix-run/html-template':
+        specifier: ^0.3.0
+        version: 0.3.0
+      '@remix-run/route-pattern':
+        specifier: ^0.15.0
+        version: 0.15.0
+      '@remix-run/session':
+        specifier: ^0.2.0
+        version: 0.2.0
     devDependencies:
       prettier:
         specifier: ^3.6.2
@@ -369,9 +381,6 @@ packages:
 
   '@remix-run/headers@0.15.0':
     resolution: {integrity: sha512-wGXHv9nAt8z8KQqc1bdtclduJwTO+zlQEjcNqYyifE8WqKToYu6/PJCDh5PGn0o4DHj8K71rEyP3MwZsIRRccg==}
-
-  '@remix-run/headers@0.17.0':
-    resolution: {integrity: sha512-YxHy357YpvdKvpOAsaDd/LQRD7qenTUdlvgoNb0dCpzxmX2xo+FbtBDMFBDZn4+L0aq9W78FkcvV45g5hPGllA==}
 
   '@remix-run/html-template@0.3.0':
     resolution: {integrity: sha512-aAMx68udtIk0fmCpCXHYscVeCDsRVEmEgh4XvtusPr3vkHu3jn4gx5oAxgsPXPdDmmD/d75SYyI0m/F+aLz5iQ==}
@@ -759,15 +768,12 @@ snapshots:
 
   '@poppinss/exception@1.2.2': {}
 
-  '@remix-run/cookie@0.4.0(@remix-run/headers@0.17.0)':
-    dependencies:
-      '@remix-run/headers': 0.17.0
+  '@remix-run/cookie@0.4.0': {}
 
-  '@remix-run/fetch-router@0.9.0(@remix-run/cookie@0.4.0(@remix-run/headers@0.17.0))(@remix-run/form-data-parser@0.14.0)(@remix-run/headers@0.17.0)(@remix-run/html-template@0.3.0)(@remix-run/lazy-file@3.8.0)(@remix-run/route-pattern@0.15.0)(@remix-run/session@0.2.0)':
+  '@remix-run/fetch-router@0.9.0(@remix-run/cookie@0.4.0)(@remix-run/form-data-parser@0.14.0)(@remix-run/html-template@0.3.0)(@remix-run/lazy-file@3.8.0)(@remix-run/route-pattern@0.15.0)(@remix-run/session@0.2.0)':
     dependencies:
-      '@remix-run/cookie': 0.4.0(@remix-run/headers@0.17.0)
+      '@remix-run/cookie': 0.4.0
       '@remix-run/form-data-parser': 0.14.0
-      '@remix-run/headers': 0.17.0
       '@remix-run/html-template': 0.3.0
       '@remix-run/lazy-file': 3.8.0
       '@remix-run/route-pattern': 0.15.0
@@ -778,8 +784,6 @@ snapshots:
       '@remix-run/multipart-parser': 0.13.0
 
   '@remix-run/headers@0.15.0': {}
-
-  '@remix-run/headers@0.17.0': {}
 
   '@remix-run/html-template@0.3.0': {}
 
