@@ -14,19 +14,19 @@ function postForm(post?: Post) {
 
   return html`
     <h1>${heading}</h1>
-    <form class="form-spaced" method="POST" action="${action}">
+    <form method="POST" action="${action}">
       ${post ? html`<input type="hidden" name="_method" value="PUT" />` : null}
-      <div class="form-field">
+      <div>
         <label for="title">Title</label>
         <input type="text" id="title" name="title" value="${post?.title}" required />
       </div>
-      <div class="form-field">
+      <div>
         <label for="content">Content</label>
         <textarea id="content" name="content" rows="10" required>${post?.content}</textarea>
       </div>
       <button type="submit">${post ? 'Update' : 'Create'} Post</button>
     </form>
-    <p class="form-actions">
+    <p>
       <a href="${routes.posts.index.href()}">← Back to Posts</a>
     </p>
   `
@@ -79,21 +79,21 @@ export let posts = {
         html`
           <article>
             <h1>${post.title}</h1>
-            <div class="post-actions flex">
+            <header>
               <a href="${routes.posts.index.href()}">← Back to Posts</a>
               <a href="${routes.posts.edit.href(getPostHrefParams(post))}">Edit Post</a>
               <form method="POST" action="${routes.posts.destroy.href(getPostHrefParams(post))}">
                 <input type="hidden" name="_method" value="DELETE" />
-                <button type="submit" class="btn-link btn-delete">Delete Post</button>
+                <button type="submit">Delete Post</button>
               </form>
-            </div>
-            <div class="post-content">${post.content}</div>
-            <div class="post-meta flex">
+            </header>
+            <div>${post.content}</div>
+            <footer>
               <small>Posted on ${post.createdAt.toLocaleDateString()}</small>
               ${post.updatedAt.getTime() !== post.createdAt.getTime()
                 ? html`<small>Updated on ${post.updatedAt.toLocaleDateString()}</small>`
                 : null}
-            </div>
+            </footer>
           </article>
           <section>
             <h2>Comments</h2>
@@ -101,16 +101,15 @@ export let posts = {
               ? comments.map((comment) => {
                   let isCommentAuthor = currentUser && currentUser === comment.author
                   return html`
-                    <div class="comment last-child-no-border">
-                      <div class="comment-header flex">
+                    <article>
+                      <header>
                         <strong>${comment.author}</strong>
                         <small>${comment.createdAt.toLocaleDateString()}</small>
-                      </div>
+                      </header>
                       <p>${comment.content}</p>
                       ${isCommentAuthor
                         ? html`
                             <form
-                              class="comment-delete-form"
                               method="POST"
                               action="${routes.posts.comment.destroy.href({
                                 ...getPostHrefParams(post),
@@ -118,23 +117,22 @@ export let posts = {
                               })}"
                             >
                               <input type="hidden" name="_method" value="DELETE" />
-                              <button type="submit" class="btn-link btn-delete">Delete</button>
+                              <button type="submit">Delete</button>
                             </form>
                           `
                         : null}
-                    </div>
+                    </article>
                   `
                 })
               : html`<p>No comments yet.</p>`}
             ${currentUser
               ? html`
                   <form
-                    class="form-spaced"
                     method="POST"
                     action="${routes.posts.comment.create.href(getPostHrefParams(post))}"
                   >
                     <h3>Add a Comment</h3>
-                    <div class="form-field">
+                    <div>
                       <textarea name="content" rows="4" required></textarea>
                     </div>
                     <button type="submit">Post Comment</button>

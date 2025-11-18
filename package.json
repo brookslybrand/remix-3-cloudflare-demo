@@ -6,7 +6,7 @@
     "deploy": "wrangler deploy",
     "dev": "wrangler dev",
     "start": "wrangler dev",
-    "typecheck": "tsc --noEmit",
+    "typecheck": "pnpm run cf-typegen && tsc --noEmit",
     "cf-typegen": "wrangler types",
     "format": "prettier --write \"src/**/*.{ts,tsx,js,jsx,json}\"",
     "format:check": "prettier --check \"src/**/*.{ts,tsx,js,jsx,json}\""

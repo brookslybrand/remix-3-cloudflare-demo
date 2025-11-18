@@ -15,19 +15,23 @@ export function layout(body: SafeHtml | string, currentUser?: string) {
       </head>
       <body>
         <nav>
-          <div class="nav-links flex flex-center">
-            <a href="${routes.home.href()}">Home</a>
-            <a href="${routes.posts.index.href()}">Posts</a>
-            <a href="${routes.posts.new.href()}">New Post</a>
-          </div>
+          <ul>
+            <li><a href="${routes.home.href()}">Home</a></li>
+            <li><a href="${routes.posts.index.href()}">Posts</a></li>
+            <li><a href="${routes.posts.new.href()}">New Post</a></li>
+          </ul>
           ${currentUser
-            ? html`<div class="nav-user flex flex-center">
-                <span>${currentUser}</span>
-                <form method="POST" action="${routes.logout.href()}">
-                  <button type="submit">Logout</button>
-                </form>
-              </div>`
-            : html`<a href="${routes.login.index.href()}">Login</a>`}
+            ? html`<ul>
+                <li><span>${currentUser}</span></li>
+                <li>
+                  <form method="POST" action="${routes.logout.href()}">
+                    <button type="submit">Logout</button>
+                  </form>
+                </li>
+              </ul>`
+            : html`<ul>
+                <li><a href="${routes.login.index.href()}">Login</a></li>
+              </ul>`}
         </nav>
         <main>${body}</main>
       </body>
@@ -37,14 +41,14 @@ export function layout(body: SafeHtml | string, currentUser?: string) {
 
 export function postListItem(post: Post) {
   return html`
-    <article class="last-child-no-border">
+    <article>
       <h2>
         <a href="${routes.posts.show.href(getPostHrefParams(post))}">${post.title}</a>
       </h2>
       <p>${post.content.substring(0, 100)}${post.content.length > 100 ? '...' : null}</p>
-      <div class="post-meta flex">
+      <footer>
         <small>Posted on ${post.createdAt.toLocaleDateString()}</small>
-      </div>
+      </footer>
     </article>
   `
 }
