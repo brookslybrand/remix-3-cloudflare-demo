@@ -52,3 +52,9 @@ Create a router with `createRouter` and map the routes to the router with `route
 Use `router.fetch` in the fetch handler
 
 Split up the logic into other files
+
+Things to show:
+
+- Adding handlers
+- Adding middleware
+- Adding assets
