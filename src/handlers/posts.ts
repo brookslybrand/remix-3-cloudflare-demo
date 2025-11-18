@@ -74,6 +74,8 @@ export let posts = {
 
     let postUrl = routes.posts.show.href(getPostHrefParams(post))
 
+    let postParams = getPostHrefParams(post)
+
     return res.html(
       templates.layout(
         html`
@@ -81,8 +83,8 @@ export let posts = {
             <h1>${post.title}</h1>
             <header>
               <a href="${routes.posts.index.href()}">← Back to Posts</a>
-              <a href="${routes.posts.edit.href(getPostHrefParams(post))}">Edit Post</a>
-              <form method="POST" action="${routes.posts.destroy.href(getPostHrefParams(post))}">
+              <a href="${routes.posts.edit.href(postParams)}">Edit Post</a>
+              <form method="POST" action="${routes.posts.destroy.href(postParams)}">
                 <input type="hidden" name="_method" value="DELETE" />
                 <button type="submit">Delete Post</button>
               </form>
@@ -100,6 +102,7 @@ export let posts = {
             ${comments.length > 0
               ? comments.map((comment) => {
                   let isCommentAuthor = currentUser && currentUser === comment.author
+                  let commentDeleteFormId = `delete-comment-${comment.id}`
                   return html`
                     <article>
                       <header>
@@ -110,14 +113,15 @@ export let posts = {
                       ${isCommentAuthor
                         ? html`
                             <form
+                              id="${commentDeleteFormId}"
                               method="POST"
                               action="${routes.posts.comment.destroy.href({
-                                ...getPostHrefParams(post),
+                                ...postParams,
                                 commentId: comment.id,
                               })}"
                             >
                               <input type="hidden" name="_method" value="DELETE" />
-                              <button type="submit">Delete</button>
+                              <button type="submit" data-delete-form>Delete</button>
                             </form>
                           `
                         : null}
@@ -125,12 +129,10 @@ export let posts = {
                   `
                 })
               : html`<p>No comments yet.</p>`}
+            <script type="module" src="/interactions.js"></script>
             ${currentUser
               ? html`
-                  <form
-                    method="POST"
-                    action="${routes.posts.comment.create.href(getPostHrefParams(post))}"
-                  >
+                  <form method="POST" action="${routes.posts.comment.create.href(postParams)}">
                     <h3>Add a Comment</h3>
                     <div>
                       <textarea name="content" rows="4" required></textarea>

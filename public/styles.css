@@ -113,6 +113,12 @@ article header {
   gap: 1rem;
   margin-bottom: 1.5rem;
   flex-wrap: wrap;
+  align-items: center;
+}
+
+article header form {
+  margin: 0;
+  display: inline;
 }
 
 article footer {
