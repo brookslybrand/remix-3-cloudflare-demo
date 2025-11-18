@@ -11,8 +11,15 @@
  * Learn more at https://developers.cloudflare.com/workers/
  */
 
+import { router } from './router'
+
 export default {
-	async fetch(request, env, ctx): Promise<Response> {
-		return new Response('Hello World!');
-	},
-} satisfies ExportedHandler<Env>;
+  async fetch(request, env, ctx): Promise<Response> {
+    try {
+      return router.fetch(request)
+    } catch (error) {
+      console.error(error)
+      return new Response('Internal Server Error', { status: 500 })
+    }
+  },
+} satisfies ExportedHandler<Env>
