@@ -11,33 +11,7 @@ Last month at Remix Jam the co-creators of Remix and React Router shared an earl
 
 In this talk Brooks is going to answer "yes, but also no" to both of those questions while showing you around the Remix 3 landscape.
 
-## The Pieces
-
-### Core Files
-
-**3 main files:**
-
-- `src/worker.ts` - The server for handling requests/responses
-  - `createRequestListener`
-  - `router.fetch`
-
-- `src/routes.ts` - The route definitions
-  - `route` - Route definition helper
-  - `formAction` - Helper for an `index` and `action`
-  - `resources` - Helper to create various typical CRUD endpoints
-
-- `src/router.ts` - Router configuration
-  - Global middleware
-    - `logger()` - Simple logging
-    - `formData()` - Automatically parses `FormData` from the request body and populates `context.formData`
-    - `methodOverride()` - Overrides `context.method` with the value of the method override field (this is my favorite middleware, and it's so simple what it's doing)
-    - `session` - Manages `context.session` based on the session cookie
-
-### Important Details
-
-- `html` from `@remix-run/html-template` is necessary for escaping HTML and ensuring we prevent XSS
-
-## The Story / Narrative Flow
+## The Walkthrough
 
 ### Starting Point
 
@@ -51,15 +25,56 @@ export default {
 } satisfies ExportedHandler<Env>
 ```
 
-### Building Up
+### Routing
 
-1. Create some routes with `route`
-2. Create a router with `createRouter` and map the routes to the router with `router.map`
-3. Use `router.fetch` in the fetch handler
-4. Split up the logic into other files
+Create a route definition in `routes.ts` with `route`, `formAction`, and `resources`
 
-### Things to Show
+Final shape is:
 
-- Adding handlers
-- Adding middleware
-- Adding assets
+```ts
+export let routes = route({
+  home: '/',
+  login: formAction('/login'),
+  logout: { method: 'POST', pattern: '/logout' },
+  posts: {
+    ...resources('posts', { only: ['index', 'new', 'create'] }),
+    ...resource('/posts/:year-:month-:day/:slug', {
+      only: ['show', 'edit', 'update', 'destroy'],
+    }),
+    comment: resources('/posts/:year-:month-:day/:slug/comment', {
+      only: ['create', 'destroy'],
+      param: 'commentId',
+    }),
+  },
+})
+```
+
+### Handlers
+
+Create a fetch router in `router.ts` with `createRouter`
+
+Wire it up to `worker.ts` with `router.fetch`
+
+Add middleware:
+
+- logger()
+- formData()
+- methodOverride()
+- session(cookie, storage)
+
+Setup session middleware and login/logout routes
+
+### Interactions
+
+Put the script in `post.ts`
+
+```html
+<script type="module" src="/interactions.js"></script>
+```
+
+Add:
+
+- click -- prevent default
+- pressDown -- createCircle
+- longPress -- popCircle
+- pressUp, pointerleave, pressCancel -- cleanup

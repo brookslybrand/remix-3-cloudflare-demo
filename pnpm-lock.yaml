@@ -9,26 +9,29 @@ importers:
   .:
     dependencies:
       '@remix-run/cookie':
-        specifier: ^0.4.0
-        version: 0.4.0
+        specifier: ^0.4.1
+        version: 0.4.1(@remix-run/headers@0.15.0)
       '@remix-run/fetch-router':
         specifier: ^0.9.0
-        version: 0.9.0(@remix-run/cookie@0.4.0)(@remix-run/form-data-parser@0.14.0)(@remix-run/html-template@0.3.0)(@remix-run/lazy-file@3.8.0)(@remix-run/route-pattern@0.15.0)(@remix-run/session@0.2.0)
+        version: 0.9.0(@remix-run/cookie@0.4.1(@remix-run/headers@0.15.0))(@remix-run/form-data-parser@0.14.0)(@remix-run/headers@0.15.0)(@remix-run/html-template@0.3.0)(@remix-run/lazy-file@3.8.0)(@remix-run/route-pattern@0.15.3)(@remix-run/session@0.2.1)
       '@remix-run/html-template':
         specifier: ^0.3.0
         version: 0.3.0
       '@remix-run/route-pattern':
-        specifier: ^0.15.0
-        version: 0.15.0
+        specifier: ^0.15.3
+        version: 0.15.3
       '@remix-run/session':
-        specifier: ^0.2.0
-        version: 0.2.0
+        specifier: ^0.2.1
+        version: 0.2.1
     devDependencies:
+      '@types/node':
+        specifier: ^24.10.1
+        version: 24.10.1
       prettier:
         specifier: ^3.6.2
         version: 3.6.2
       typescript:
-        specifier: ^5.5.2
+        specifier: ^5.9.3
         version: 5.9.3
       wrangler:
         specifier: ^4.49.0
@@ -360,10 +363,10 @@ packages:
   '@poppinss/exception@1.2.2':
     resolution: {integrity: sha512-m7bpKCD4QMlFCjA/nKTs23fuvoVFoA83brRKmObCUNmi/9tVu8Ve3w4YQAnJu4q3Tjf5fr685HYIC/IA2zHRSg==}
 
-  '@remix-run/cookie@0.4.0':
-    resolution: {integrity: sha512-25Buq4i6nyaRZHFlIrtv0m3gkOGXI26XF0aQ8/xHi0Bu2SiRBnhf/YFhxsPLeICv/1zrMk1eIy9waQ3Pr0uKAA==}
+  '@remix-run/cookie@0.4.1':
+    resolution: {integrity: sha512-vcqcAuzolXZXsUART9S/YgztGHFoY2Uw7nFbuBsBdN/PjVlbW+F1GtXl4Tg7tz1iBpPvA3LnKJuZNNcLRLTRLQ==}
     peerDependencies:
-      '@remix-run/headers': ^0.16.0
+      '@remix-run/headers': ^0.17.0
 
   '@remix-run/fetch-router@0.9.0':
     resolution: {integrity: sha512-getkVhWaxzgma12yg5dY4Ad61mjDeD5Xxb580UY7pcxgwHFeINiHPiR6ACEzwuyTHSbcqqaWy7rmVq4NrfaEvg==}
@@ -391,11 +394,11 @@ packages:
   '@remix-run/multipart-parser@0.13.0':
     resolution: {integrity: sha512-EMEnc4YOzOnw62BmdTqvlmvzUCYDsQ1fpca6Xtvn8oV5GHXMYJoB3ocQyA+KNAa3j8QzKyNomifUXJ9OVrGEXA==}
 
-  '@remix-run/route-pattern@0.15.0':
-    resolution: {integrity: sha512-XSuVwWKswcx0i46EdxI/Wau+7VQ6wA/U/iUHJCKcVJVlepImotKOPRMbIO0/omGb5F8RvnJkwOVodO9z7+nQbA==}
+  '@remix-run/route-pattern@0.15.3':
+    resolution: {integrity: sha512-7s4Oy9q6Oz9Vfwg0iZscpmYVASNG9fLqbCa+YY0+SWKksDpvCRiW46xp3S3zEvT7zEP7G55FKA+JdrqqK2AOXw==}
 
-  '@remix-run/session@0.2.0':
-    resolution: {integrity: sha512-0Gmqj2iUE5FfAiEEhgCQnEbHk97pv1jilZFjGQPk/Sdcc+E5+q9+XXdqq3/zZ31EJ99cM3kz7g05qiBq+bE2GQ==}
+  '@remix-run/session@0.2.1':
+    resolution: {integrity: sha512-RdLrBwSHYxblU1hAb4VnIpctzlKWrR5P9fNolatkYHB6JnC7vzoLgxKTQmaP4fwI2vW8CQ5cEJMA0i4nqNbhwQ==}
 
   '@sindresorhus/is@7.1.1':
     resolution: {integrity: sha512-rO92VvpgMc3kfiTjGT52LEtJ8Yc5kCWhZjLQ3LwlA4pSgPpQO7bVpYXParOD8Jwf+cVQECJo3yP/4I8aZtUQTQ==}
@@ -403,6 +406,9 @@ packages:
 
   '@speed-highlight/core@1.2.12':
     resolution: {integrity: sha512-uilwrK0Ygyri5dToHYdZSjcvpS2ZwX0w5aSt3GCEN9hrjxWCoeV4Z2DTXuxjwbntaLQIEEAlCeNQss5SoHvAEA==}
+
+  '@types/node@24.10.1':
+    resolution: {integrity: sha512-GNWcUTRBgIRJD5zj+Tq0fKOJ5XZajIiBroOF0yvj2bSU1WvNdYS/dn9UxwsujGW4JX06dnHyjV2y9rRaybH0iQ==}
 
   acorn-walk@8.3.2:
     resolution: {integrity: sha512-cjkyv4OtNCIeqhHrfS81QWXoCBPExR/J62oyEqepVw8WaQeSqpW2uhuLPh1m9eWhDuOo/jUXVTlifvesOWp/4A==}
@@ -517,6 +523,9 @@ packages:
     resolution: {integrity: sha512-jl1vZzPDinLr9eUt3J/t7V6FgNEw9QjvBPdysz9KfQDD41fQrC2Y4vKQdiaUpFT4bXlb1RHhLpp8wtm6M5TgSw==}
     engines: {node: '>=14.17'}
     hasBin: true
+
+  undici-types@7.16.0:
+    resolution: {integrity: sha512-Zz+aZWSj8LE6zoxD+xrjh4VfkIG8Ya6LvYkZqtUQGJPZjYl53ypCaUwWqo7eI0x66KBGeRo+mlBEkMSeSZ38Nw==}
 
   undici@7.14.0:
     resolution: {integrity: sha512-Vqs8HTzjpQXZeXdpsfChQTlafcMQaaIwnGwLam1wudSSjlJeQ3bw1j+TLPePgrCnCpUXx7Ba5Pdpf5OBih62NQ==}
@@ -768,16 +777,19 @@ snapshots:
 
   '@poppinss/exception@1.2.2': {}
 
-  '@remix-run/cookie@0.4.0': {}
-
-  '@remix-run/fetch-router@0.9.0(@remix-run/cookie@0.4.0)(@remix-run/form-data-parser@0.14.0)(@remix-run/html-template@0.3.0)(@remix-run/lazy-file@3.8.0)(@remix-run/route-pattern@0.15.0)(@remix-run/session@0.2.0)':
+  '@remix-run/cookie@0.4.1(@remix-run/headers@0.15.0)':
     dependencies:
-      '@remix-run/cookie': 0.4.0
+      '@remix-run/headers': 0.15.0
+
+  '@remix-run/fetch-router@0.9.0(@remix-run/cookie@0.4.1(@remix-run/headers@0.15.0))(@remix-run/form-data-parser@0.14.0)(@remix-run/headers@0.15.0)(@remix-run/html-template@0.3.0)(@remix-run/lazy-file@3.8.0)(@remix-run/route-pattern@0.15.3)(@remix-run/session@0.2.1)':
+    dependencies:
+      '@remix-run/cookie': 0.4.1(@remix-run/headers@0.15.0)
       '@remix-run/form-data-parser': 0.14.0
+      '@remix-run/headers': 0.15.0
       '@remix-run/html-template': 0.3.0
       '@remix-run/lazy-file': 3.8.0
-      '@remix-run/route-pattern': 0.15.0
-      '@remix-run/session': 0.2.0
+      '@remix-run/route-pattern': 0.15.3
+      '@remix-run/session': 0.2.1
 
   '@remix-run/form-data-parser@0.14.0':
     dependencies:
@@ -795,13 +807,17 @@ snapshots:
     dependencies:
       '@remix-run/headers': 0.15.0
 
-  '@remix-run/route-pattern@0.15.0': {}
+  '@remix-run/route-pattern@0.15.3': {}
 
-  '@remix-run/session@0.2.0': {}
+  '@remix-run/session@0.2.1': {}
 
   '@sindresorhus/is@7.1.1': {}
 
   '@speed-highlight/core@1.2.12': {}
+
+  '@types/node@24.10.1':
+    dependencies:
+      undici-types: 7.16.0
 
   acorn-walk@8.3.2: {}
 
@@ -938,6 +954,8 @@ snapshots:
     optional: true
 
   typescript@5.9.3: {}
+
+  undici-types@7.16.0: {}
 
   undici@7.14.0: {}
 
